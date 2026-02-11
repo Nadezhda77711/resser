@@ -1,0 +1,243 @@
+// Prisma schema for Entity Registry
+// SQLite for local MVP
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+
+model Entity {
+  entity_uid         String            @id
+  entity_name        String
+  entity_type_code   String
+  parent_entity_uid  String?
+  entity_description String?
+  entity_country     String?
+  added_at           DateTime          @default(now())
+  comment            String?
+
+  entity_type EntityType @relation(fields: [entity_type_code], references: [code])
+  parent      Entity?    @relation("EntityParent", fields: [parent_entity_uid], references: [entity_uid])
+  children    Entity[]   @relation("EntityParent")
+
+  flags       EntityFlag[]
+  categories  EntityCategoryMap[]
+  files       EntitiesFileMap[]
+  affiliations Affiliation[]
+  incidents   Incident[]
+
+  @@index([entity_type_code])
+  @@index([parent_entity_uid])
+}
+
+model EntityType {
+  code        String   @id
+  title       String
+  description String?
+  parent_code String?
+
+  entities Entity[]
+}
+
+model Flag {
+  code        String   @id
+  title       String?
+  description String?
+  severity    String?
+
+  entity_flags EntityFlag[]
+}
+
+model EntityFlag {
+  id          Int      @id @default(autoincrement())
+  entity_uid  String
+  flag_code   String
+  source      String
+  ext_name    String?
+  ext_category String?
+  ext_wallet_name String?
+  ext_label   String?
+  added_at    DateTime @default(now())
+  analyst     String?
+  comment     String?
+
+  entity Entity @relation(fields: [entity_uid], references: [entity_uid])
+  flag   Flag   @relation(fields: [flag_code], references: [code])
+
+  @@index([entity_uid])
+  @@index([flag_code])
+  @@unique([entity_uid, flag_code, source])
+}
+
+model EntityCategory {
+  category_code String @id
+  title         String
+  description   String?
+
+  entities EntityCategoryMap[]
+}
+
+model EntityCategoryMap {
+  id            Int    @id @default(autoincrement())
+  entity_uid    String
+  category_code String
+
+  entity   Entity         @relation(fields: [entity_uid], references: [entity_uid])
+  category EntityCategory @relation(fields: [category_code], references: [category_code])
+
+  @@unique([entity_uid, category_code])
+}
+
+model EntitiesFile {
+  id          Int      @id @default(autoincrement())
+  file_name   String
+  description String?
+  created_at  DateTime @default(now())
+
+  entities EntitiesFileMap[]
+}
+
+model EntitiesFileMap {
+  id         Int    @id @default(autoincrement())
+  file_id    Int
+  entity_uid String
+
+  file   EntitiesFile @relation(fields: [file_id], references: [id])
+  entity Entity       @relation(fields: [entity_uid], references: [entity_uid])
+
+  @@unique([file_id, entity_uid])
+}
+
+model Network {
+  code        String @id
+  title       String
+  description String?
+
+  affiliations Affiliation[]
+  incidents    Incident[]
+  folders      AffiliationsFolder[]
+}
+
+model AddressRole {
+  code        String @id
+  title       String
+  description String?
+
+  affiliations Affiliation[]
+}
+
+model IncidentType {
+  code        String @id
+  title       String
+  description String?
+
+  incidents Incident[]
+}
+
+model AffiliationsFolder {
+  id           Int      @id @default(autoincrement())
+  network_code String
+  folder_name  String
+  created_at   DateTime @default(now())
+
+  network Network @relation(fields: [network_code], references: [code])
+  items   Affiliation[]
+
+  @@index([network_code])
+}
+
+model Affiliation {
+  id            Int      @id @default(autoincrement())
+  folder_id     Int
+  network_code  String
+  address       String
+  entity_uid    String?
+  address_role_code String?
+  source        String
+  analyst       String?
+  added_at      DateTime @default(now())
+  comment       String?
+  ext_name      String?
+  ext_category  String?
+  ext_wallet_name String?
+  ext_label     String?
+  is_hidden     Boolean  @default(false)
+
+  folder  AffiliationsFolder @relation(fields: [folder_id], references: [id])
+  network Network            @relation(fields: [network_code], references: [code])
+  entity  Entity?            @relation(fields: [entity_uid], references: [entity_uid])
+  address_role AddressRole?  @relation(fields: [address_role_code], references: [code])
+
+  @@index([folder_id])
+  @@index([network_code])
+  @@index([entity_uid])
+}
+
+model IncidentsFile {
+  id         Int      @id @default(autoincrement())
+  month      String
+  file_name  String
+  created_at DateTime @default(now())
+
+  items Incident[]
+}
+
+model Incident {
+  id             Int      @id @default(autoincrement())
+  file_id        Int
+  network_code   String
+  address        String
+  entity_uid     String?
+  incident_type_code String
+  incident_date  DateTime
+  source         String
+  wallet_role    String?
+  added_at       DateTime @default(now())
+  analyst        String?
+  tx_hashes      String?
+
+  file    IncidentsFile @relation(fields: [file_id], references: [id])
+  network Network       @relation(fields: [network_code], references: [code])
+  entity  Entity?       @relation(fields: [entity_uid], references: [entity_uid])
+  incident_type IncidentType @relation(fields: [incident_type_code], references: [code])
+
+  @@index([file_id])
+  @@index([network_code])
+  @@index([entity_uid])
+}
+
+model User {
+  id         Int       @id @default(autoincrement())
+  email      String    @unique
+  name       String?
+  created_at DateTime  @default(now())
+
+  roles UserRole[]
+}
+
+model Role {
+  id          Int      @id @default(autoincrement())
+  code        String   @unique
+  title       String
+  description String?
+
+  users UserRole[]
+}
+
+model UserRole {
+  id      Int @id @default(autoincrement())
+  user_id Int
+  role_id Int
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  role Role @relation(fields: [role_id], references: [id], onDelete: Cascade)
+
+  @@unique([user_id, role_id])
+  @@index([user_id])
+  @@index([role_id])
+}
