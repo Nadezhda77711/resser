@@ -1,0 +1,33 @@
+{
+  "name": "ressert",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio",
+    "seed": "node scripts/seed.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.17.0",
+    "clsx": "^2.1.1",
+    "jspdf": "^2.5.1",
+    "next": "14.2.5",
+    "papaparse": "^5.4.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.11",
+    "@types/papaparse": "^5.3.14",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "prisma": "^5.17.0",
+    "typescript": "^5.5.4"
+  }
+}

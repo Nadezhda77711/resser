@@ -1,0 +1,399 @@
+
+> ressert@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+ ⚠ Port 3001 is in use, trying 3002 instead.
+ ⚠ Port 3002 is in use, trying 3003 instead.
+ ⚠ Port 3003 is in use, trying 3004 instead.
+  ▲ Next.js 14.2.5
+  - Local:        http://localhost:3004
+  - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 2.9s
+ ○ Compiling / ...
+ ✓ Compiled / in 6.7s (508 modules)
+ GET / 307 in 7214ms
+ ○ Compiling /entities ...
+ ✓ Compiled /entities in 9.8s (870 modules)
+ GET /entities 200 in 10066ms
+ ✓ Compiled /api/entities/files in 405ms (472 modules)
+prisma:error 
+Invalid `prisma.entitiesFile.findMany()` invocation:
+
+
+Error querying the database: FATAL: Tenant or user not found
+ ⨯ PrismaClientInitializationError: 
+Invalid `prisma.entitiesFile.findMany()` invocation:
+
+
+Error querying the database: FATAL: Tenant or user not found
+    at $n.handleRequestError (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:7615)
+    at $n.handleAndLogRequestError (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async GET (webpack-internal:///(rsc)/./app/api/entities/files/route.ts:11:19)
+    at async C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:55038
+    at async ek.execute (C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:45808)
+    at async ek.handle (C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:56292)
+    at async doRender (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1599:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderPageComponent (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1931:24)
+    at async DevServer.renderToResponseImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\nadeg\entity-registry\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\nadeg\entity-registry\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+ GET /api/entities/files 500 in 2222ms
+prisma:error 
+Invalid `prisma.entitiesFile.findMany()` invocation:
+
+
+Error querying the database: FATAL: Tenant or user not found
+ ⨯ PrismaClientInitializationError: 
+Invalid `prisma.entitiesFile.findMany()` invocation:
+
+
+Error querying the database: FATAL: Tenant or user not found
+    at $n.handleRequestError (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:7615)
+    at $n.handleAndLogRequestError (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async GET (webpack-internal:///(rsc)/./app/api/entities/files/route.ts:11:19)
+    at async C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:55038
+    at async ek.execute (C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:45808)
+    at async ek.handle (C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:56292)
+    at async doRender (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1599:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderPageComponent (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1931:24)
+    at async DevServer.renderToResponseImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\nadeg\entity-registry\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\nadeg\entity-registry\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+ GET /api/entities/files 500 in 1206ms
+ ○ Compiling /affiliations ...
+ ✓ Compiled /affiliations in 514ms (908 modules)
+ ✓ Compiled /api/affiliations/folders in 175ms (478 modules)
+prisma:error 
+Invalid `prisma.affiliationsFolder.findMany()` invocation:
+
+
+Error querying the database: FATAL: Tenant or user not found
+ ⨯ PrismaClientInitializationError: 
+Invalid `prisma.affiliationsFolder.findMany()` invocation:
+
+
+Error querying the database: FATAL: Tenant or user not found
+    at $n.handleRequestError (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:7615)
+    at $n.handleAndLogRequestError (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async GET (webpack-internal:///(rsc)/./app/api/affiliations/folders/route.ts:11:21)
+    at async C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:55038
+    at async ek.execute (C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:45808)
+    at async ek.handle (C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:56292)
+    at async doRender (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1599:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderPageComponent (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1931:24)
+    at async DevServer.renderToResponseImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\nadeg\entity-registry\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\nadeg\entity-registry\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+ GET /api/affiliations/folders 500 in 1329ms
+prisma:error 
+Invalid `prisma.affiliationsFolder.findMany()` invocation:
+
+
+Error querying the database: FATAL: Tenant or user not found
+ ⨯ PrismaClientInitializationError: 
+Invalid `prisma.affiliationsFolder.findMany()` invocation:
+
+
+Error querying the database: FATAL: Tenant or user not found
+    at $n.handleRequestError (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:7615)
+    at $n.handleAndLogRequestError (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async GET (webpack-internal:///(rsc)/./app/api/affiliations/folders/route.ts:11:21)
+    at async C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:55038
+    at async ek.execute (C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:45808)
+    at async ek.handle (C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:56292)
+    at async doRender (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1599:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderPageComponent (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1931:24)
+    at async DevServer.renderToResponseImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\nadeg\entity-registry\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\nadeg\entity-registry\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+ GET /api/affiliations/folders 500 in 1186ms
+ ✓ Compiled /incidents in 401ms (916 modules)
+ ✓ Compiled /api/incidents/files in 170ms (484 modules)
+prisma:error 
+Invalid `prisma.incidentsFile.findMany()` invocation:
+
+
+Error querying the database: FATAL: Tenant or user not found
+ ⨯ PrismaClientInitializationError: 
+Invalid `prisma.incidentsFile.findMany()` invocation:
+
+
+Error querying the database: FATAL: Tenant or user not found
+    at $n.handleRequestError (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:7615)
+    at $n.handleAndLogRequestError (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async GET (webpack-internal:///(rsc)/./app/api/incidents/files/route.ts:11:19)
+    at async C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:55038
+    at async ek.execute (C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:45808)
+    at async ek.handle (C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:56292)
+    at async doRender (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1599:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderPageComponent (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1931:24)
+    at async DevServer.renderToResponseImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\nadeg\entity-registry\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\nadeg\entity-registry\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+ GET /api/incidents/files 500 in 1395ms
+ ○ Compiling /settings ...
+ ✓ Compiled /settings in 516ms (926 modules)
+ ✓ Compiled /api/dictionaries in 168ms (491 modules)
+prisma:error 
+Invalid `prisma.incidentsFile.findMany()` invocation:
+
+
+Error querying the database: FATAL: Tenant or user not found
+prisma:error 
+Invalid `prisma.entityType.findMany()` invocation:
+
+
+Error querying the database: FATAL: Tenant or user not found
+ ⨯ PrismaClientInitializationError: 
+Invalid `prisma.incidentsFile.findMany()` invocation:
+
+
+Error querying the database: FATAL: Tenant or user not found
+    at $n.handleRequestError (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:7615)
+    at $n.handleAndLogRequestError (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async GET (webpack-internal:///(rsc)/./app/api/incidents/files/route.ts:11:19)
+    at async C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:55038
+    at async ek.execute (C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:45808)
+    at async ek.handle (C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:56292)
+    at async doRender (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1599:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderPageComponent (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1931:24)
+    at async DevServer.renderToResponseImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\nadeg\entity-registry\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\nadeg\entity-registry\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+ ⨯ PrismaClientInitializationError: 
+Invalid `prisma.entityType.findMany()` invocation:
+
+
+Error querying the database: FATAL: Tenant or user not found
+    at $n.handleRequestError (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:7615)
+    at $n.handleAndLogRequestError (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async GET (webpack-internal:///(rsc)/./app/api/dictionaries/route.ts:12:25)
+    at async C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:55038
+    at async ek.execute (C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:45808)
+    at async ek.handle (C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:56292)
+    at async doRender (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1599:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderPageComponent (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1931:24)
+    at async DevServer.renderToResponseImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\nadeg\entity-registry\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\nadeg\entity-registry\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+ GET /api/incidents/files 500 in 1674ms
+ GET /api/dictionaries 500 in 1082ms
+prisma:error 
+Invalid `prisma.entityType.findMany()` invocation:
+
+
+Error querying the database: FATAL: Tenant or user not found
+prisma:error 
+Invalid `prisma.entitiesFile.findMany()` invocation:
+
+
+Error querying the database: FATAL: Tenant or user not found
+ ⨯ PrismaClientInitializationError: 
+Invalid `prisma.entityType.findMany()` invocation:
+
+
+Error querying the database: FATAL: Tenant or user not found
+    at $n.handleRequestError (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:7615)
+    at $n.handleAndLogRequestError (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async GET (webpack-internal:///(rsc)/./app/api/dictionaries/route.ts:12:25)
+    at async C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:55038
+    at async ek.execute (C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:45808)
+    at async ek.handle (C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:56292)
+    at async doRender (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1599:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderPageComponent (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1931:24)
+    at async DevServer.renderToResponseImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\nadeg\entity-registry\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\nadeg\entity-registry\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+ ⨯ PrismaClientInitializationError: 
+Invalid `prisma.entitiesFile.findMany()` invocation:
+
+
+Error querying the database: FATAL: Tenant or user not found
+    at $n.handleRequestError (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:7615)
+    at $n.handleAndLogRequestError (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async GET (webpack-internal:///(rsc)/./app/api/entities/files/route.ts:11:19)
+    at async C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:55038
+    at async ek.execute (C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:45808)
+    at async ek.handle (C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:56292)
+    at async doRender (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1599:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderPageComponent (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1931:24)
+    at async DevServer.renderToResponseImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\nadeg\entity-registry\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\nadeg\entity-registry\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+ GET /api/dictionaries 500 in 1195ms
+ GET /api/entities/files 500 in 662ms
+prisma:error 
+Invalid `prisma.entitiesFile.findMany()` invocation:
+
+
+Error querying the database: FATAL: Tenant or user not found
+ ⨯ PrismaClientInitializationError: 
+Invalid `prisma.entitiesFile.findMany()` invocation:
+
+
+Error querying the database: FATAL: Tenant or user not found
+    at $n.handleRequestError (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:7615)
+    at $n.handleAndLogRequestError (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (C:\Users\nadeg\entity-registry\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async GET (webpack-internal:///(rsc)/./app/api/entities/files/route.ts:11:19)
+    at async C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:55038
+    at async ek.execute (C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:45808)
+    at async ek.handle (C:\Users\nadeg\entity-registry\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:56292)
+    at async doRender (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1599:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderPageComponent (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1931:24)
+    at async DevServer.renderToResponseImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:1969:32)
+    at async DevServer.pipeImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\nadeg\entity-registry\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\nadeg\entity-registry\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\nadeg\entity-registry\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+ GET /api/entities/files 500 in 1103ms
