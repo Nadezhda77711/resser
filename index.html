@@ -1,0 +1,2151 @@
+﻿
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ressert - Static Client</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Spline+Sans:wght@400;600;700&display=swap');
+
+:root {
+  --bg: #f7f3ee;
+  --panel: #ffffff;
+  --ink: #1a1a1a;
+  --muted: #6b6b6b;
+  --accent: #0d5c63;
+  --accent-2: #f2a154;
+  --border: #e4ddd6;
+  --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Spline Sans', system-ui, -apple-system, Segoe UI, sans-serif;
+  color: var(--ink);
+  background: radial-gradient(circle at top left, #f0e8dd, #f7f3ee 35%, #f7f3ee 100%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 28px;
+  background: rgba(247, 243, 238, 0.9);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.brand-sub {
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.content {
+  padding: 24px 28px 80px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.topbar-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.settings-link {
+  padding: 6px 12px;
+  border-radius: 10px;
+  border: 1px dashed var(--border);
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.tab {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-weight: 600;
+  background: var(--panel);
+}
+
+.tab.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.section {
+  margin-top: 20px;
+}
+
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  margin: 0 0 14px 0;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.card h3 {
+  margin: 0 0 6px 0;
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.btn-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+button, .button {
+  font-family: inherit;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button.secondary, .button.secondary {
+  background: var(--panel);
+  color: var(--ink);
+  border: 1px solid var(--border);
+}
+
+button.ghost {
+  background: transparent;
+  color: var(--accent);
+  border: 1px dashed var(--accent);
+}
+
+.table-wrap {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table th, .table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.table th {
+  background: #f0ebe4;
+  font-weight: 600;
+}
+
+.input, select, textarea {
+  font-family: inherit;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 100%;
+  background: #fff;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.modal {
+  background: var(--panel);
+  border-radius: 16px;
+  padding: 20px;
+  width: min(900px, 92vw);
+  max-height: 85vh;
+  overflow: auto;
+}
+
+.badge {
+  display: inline-flex;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #eee7df;
+  font-size: 12px;
+  margin-right: 6px;
+  align-items: center;
+}
+
+.subtabs {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0 16px;
+  flex-wrap: wrap;
+}
+
+.subtab {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.subtab.active {
+  background: var(--accent-2);
+  border-color: var(--accent-2);
+  color: #1a1a1a;
+}
+
+.notice {
+  padding: 10px 12px;
+  background: #fff6e5;
+  border: 1px solid #f4d39c;
+  border-radius: 10px;
+  color: #7a4b00;
+}
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #1f2d2b;
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 10px;
+  z-index: 30;
+}
+
+.link {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+button.link {
+  color: var(--accent);
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.hidden {
+  display: none;
+}
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <a href="#/entities">Ressert</a>
+        <span class="brand-sub">Internal</span>
+      </div>
+      <nav class="tabs">
+        <a class="tab" data-tab="/entities" href="#/entities">Entities</a>
+        <a class="tab" data-tab="/affiliations" href="#/affiliations">Affiliations</a>
+        <a class="tab" data-tab="/incidents" href="#/incidents">Incidents</a>
+      </nav>
+      <div class="topbar-actions">
+        <a class="settings-link" href="#/settings">Settings</a>
+        <a class="settings-link" href="#/admin">Admin</a>
+      </div>
+    </header>
+    <main class="content" id="app"></main>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="toast-root"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script>
+(() => {
+  const app = document.getElementById('app');
+  const modalRoot = document.getElementById('modal-root');
+  const toastRoot = document.getElementById('toast-root');
+  const apiBase = '';
+
+  const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[c]);
+
+  const fmtDate = (v) => {
+    if (!v) return '';
+    try { return new Date(v).toISOString().slice(0, 10); } catch { return String(v); }
+  };
+
+  async function fetchJSON(input, init) {
+    const res = await fetch(apiBase + input, {
+      headers: { 'Content-Type': 'application/json' },
+      ...init,
+    });
+    if (!res.ok) {
+      const msg = await res.text();
+      throw new Error(msg || res.statusText);
+    }
+    return res.json();
+  }
+
+  function toCsv(rows) {
+    if (!rows.length) return '';
+    const headers = Object.keys(rows[0]);
+    const lines = [headers.join(',')];
+    for (const row of rows) {
+      const values = headers.map((h) => {
+        const v = row[h] ?? '';
+        const s = String(v);
+        if (s.includes(',') || s.includes('"') || s.includes('\n')) {
+          return '"' + s.replace(/"/g, '""') + '"';
+        }
+        return s;
+      });
+      lines.push(values.join(','));
+    }
+    return lines.join('\n');
+  }
+
+  function normalizeCode(input) {
+    return String(input || '').trim().toLowerCase().replace(/\s+/g, '_');
+  }
+
+  function showToast(message) {
+    toastRoot.innerHTML = `<div class="toast">${esc(message)}</div>`;
+    setTimeout(() => { toastRoot.innerHTML = ''; }, 3500);
+  }
+
+  function showModal({ title, content, onBind }) {
+    modalRoot.innerHTML = `
+      <div class="modal-backdrop" id="modal-backdrop">
+        <div class="modal" id="modal-body">
+          ${title ? `<h2>${esc(title)}</h2>` : ''}
+          <div id="modal-content">${content}</div>
+        </div>
+      </div>
+    `;
+    const backdrop = document.getElementById('modal-backdrop');
+    const body = document.getElementById('modal-body');
+    const contentEl = document.getElementById('modal-content');
+    const close = () => { modalRoot.innerHTML = ''; };
+    backdrop.addEventListener('click', close);
+    body.addEventListener('click', (e) => e.stopPropagation());
+    if (onBind) onBind(contentEl, close);
+    return close;
+  }
+
+  function setActiveTab(path) {
+    document.querySelectorAll('[data-tab]').forEach((el) => {
+      if (el.getAttribute('data-tab') && path.startsWith(el.getAttribute('data-tab'))) {
+        el.classList.add('active');
+      } else {
+        el.classList.remove('active');
+      }
+    });
+  }
+
+  function downloadBlob(text, filename, type) {
+    const blob = new Blob([text], { type: type || 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  async function showDictionaryAddModal(list, onAdded) {
+    showModal({
+      title: 'Add dictionary item',
+      content: `
+        <div class="form-grid">
+          <div>
+            <label>Code</label>
+            <input class="input" id="dict-code" />
+          </div>
+          <div>
+            <label>Title</label>
+            <input class="input" id="dict-title" />
+          </div>
+          <div>
+            <label>Description</label>
+            <input class="input" id="dict-desc" />
+          </div>
+        </div>
+        <div id="dict-error" class="notice hidden" style="margin-top:12px"></div>
+        <div class="btn-row" style="margin-top:12px">
+          <button id="dict-add">Add</button>
+          <button class="secondary" id="dict-cancel">Cancel</button>
+        </div>
+      `,
+      onBind: (root, close) => {
+        root.querySelector('#dict-cancel').addEventListener('click', close);
+        root.querySelector('#dict-add').addEventListener('click', async () => {
+          const code = root.querySelector('#dict-code').value.trim();
+          const title = root.querySelector('#dict-title').value.trim();
+          const description = root.querySelector('#dict-desc').value.trim();
+          if (!code || !title) return;
+          try {
+            await fetchJSON('/api/dictionaries', {
+              method: 'POST',
+              body: JSON.stringify({ list, code, title, description: description || null })
+            });
+            close();
+            if (onAdded) onAdded();
+          } catch (e) {
+            const error = root.querySelector('#dict-error');
+            error.textContent = e.message || 'Failed to add';
+            error.classList.remove('hidden');
+          }
+        });
+      }
+    });
+  }
+
+  async function showEntityDetails(uid) {
+    const close = showModal({ title: 'Entity details', content: 'Loading...' });
+    let details;
+    try {
+      details = await fetchJSON(`/api/entities/${encodeURIComponent(uid)}/details`);
+    } catch (e) {
+      modalRoot.querySelector('#modal-content').innerHTML = `<div class="notice">${esc(e.message || 'Failed to load')}</div>`;
+      return;
+    }
+
+    let tab = 'summary';
+    let report = '';
+    let reportLoading = false;
+
+    const render = () => {
+      const summaryHtml = `
+        <div class="form-grid">
+          <div><label>entity_uid</label><div>${esc(details.entity.entity_uid)}</div></div>
+          <div><label>entity_name</label><div>${esc(details.entity.entity_name)}</div></div>
+          <div><label>entity_type</label><div>${esc(details.entity.entity_type.title)} (${esc(details.entity.entity_type.code)})</div></div>
+          <div><label>parent</label><div>${esc(details.entity.parent?.entity_uid || details.entity.parent_entity_uid || '')}</div></div>
+          <div><label>country</label><div>${esc(details.entity.entity_country || '')}</div></div>
+          <div><label>added_at</label><div>${esc(fmtDate(details.entity.added_at))}</div></div>
+        </div>
+        ${details.entity.entity_description ? `
+          <div style="margin-top:12px"><label>description</label><div>${esc(details.entity.entity_description)}</div></div>
+        ` : ''}
+        ${details.categories.length ? `
+          <div style="margin-top:12px"><label>categories</label><div>
+            ${details.categories.map((c) => `<span class="badge">${esc(c.category_code)}</span>`).join('')}
+          </div></div>
+        ` : ''}
+        ${details.flags.length ? `
+          <div style="margin-top:12px"><label>flags</label><div>
+            ${details.flags.map((f) => `<span class="badge">${esc(f.code)}</span>`).join('')}
+          </div></div>
+        ` : ''}
+        <div class="btn-row" style="margin-top:12px">
+          <button id="entity-report">${reportLoading ? 'Generating...' : 'Generate report'}</button>
+          <button class="secondary" id="entity-copy" ${report ? '' : 'disabled'}>Copy Markdown</button>
+          <button class="secondary" id="entity-pdf" ${report ? '' : 'disabled'}>Download PDF</button>
+        </div>
+        ${report ? `<pre style="white-space: pre-wrap; margin-top:12px">${esc(report)}</pre>` : ''}
+      `;
+
+      const affiliationsHtml = `
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>network</th><th>address</th><th>address_role</th><th>source</th><th>analyst</th><th>added_at</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${details.affiliations.map((a) => `
+                <tr>
+                  <td>${esc(a.network_code)}</td>
+                  <td>${esc(a.address)}</td>
+                  <td>${esc(a.address_role_code || '')}</td>
+                  <td>${esc(a.source)}</td>
+                  <td>${esc(a.analyst || '')}</td>
+                  <td>${esc(fmtDate(a.added_at))}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
+
+      const incidentsHtml = `
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>network</th><th>address</th><th>incident_type</th><th>incident_date</th><th>source</th><th>analyst</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${details.incidents.map((i) => `
+                <tr>
+                  <td>${esc(i.network_code)}</td>
+                  <td>${esc(i.address)}</td>
+                  <td>${esc(i.incident_type_code)}</td>
+                  <td>${esc(i.incident_date ? i.incident_date.slice(0, 10) : '')}</td>
+                  <td>${esc(i.source)}</td>
+                  <td>${esc(i.analyst || '')}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
+
+      modalRoot.querySelector('#modal-content').innerHTML = `
+        <div class="subtabs">
+          <button class="subtab ${tab === 'summary' ? 'active' : ''}" data-tab="summary">Summary</button>
+          <button class="subtab ${tab === 'affiliations' ? 'active' : ''}" data-tab="affiliations">Affiliations (${details.affiliations.length})</button>
+          <button class="subtab ${tab === 'incidents' ? 'active' : ''}" data-tab="incidents">Incidents (${details.incidents.length})</button>
+        </div>
+        ${tab === 'summary' ? summaryHtml : ''}
+        ${tab === 'affiliations' ? affiliationsHtml : ''}
+        ${tab === 'incidents' ? incidentsHtml : ''}
+      `;
+
+      modalRoot.querySelectorAll('.subtab').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          tab = btn.getAttribute('data-tab');
+          render();
+        });
+      });
+
+      const reportBtn = modalRoot.querySelector('#entity-report');
+      if (reportBtn) {
+        reportBtn.addEventListener('click', async () => {
+          reportLoading = true;
+          render();
+          try {
+            const md = await fetchJSON(`/api/reports/entity/${encodeURIComponent(uid)}`);
+            report = md.markdown || '';
+          } catch (e) {
+            report = 'Failed to generate report.';
+          }
+          reportLoading = false;
+          render();
+        });
+      }
+      const copyBtn = modalRoot.querySelector('#entity-copy');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', () => navigator.clipboard.writeText(report || ''));
+      }
+      const pdfBtn = modalRoot.querySelector('#entity-pdf');
+      if (pdfBtn) {
+        pdfBtn.addEventListener('click', () => {
+          const jsPDF = window.jspdf && window.jspdf.jsPDF ? window.jspdf.jsPDF : null;
+          if (!jsPDF) {
+            showToast('PDF library not loaded.');
+            return;
+          }
+          const doc = new jsPDF();
+          const lines = doc.splitTextToSize(report || 'Empty report', 180);
+          doc.text(lines, 10, 10);
+          doc.save(`entity_${uid || 'report'}.pdf`);
+        });
+      }
+    };
+
+    render();
+  }
+
+  async function renderEntities() {
+    setActiveTab('/entities');
+    app.innerHTML = '<div>Loading...</div>';
+    try {
+      const files = await fetchJSON('/api/entities/files');
+      app.innerHTML = `
+        <div class="section">
+          <h1 class="section-title">Entities</h1>
+          <div class="btn-row"><button id="entities-add-file">Add file</button></div>
+        </div>
+        <div class="section">
+          <h2>Global search</h2>
+          <div class="form-grid">
+            <div>
+              <label>entity_uid / entity_name</label>
+              <input class="input" id="entities-global-search" placeholder="example.org" />
+            </div>
+          </div>
+          <div id="entities-global-loading" class="muted" style="margin-top:8px"></div>
+          <div id="entities-global-results"></div>
+        </div>
+        <div class="section">
+          <div class="card-grid">
+            ${files.map((f) => `
+              <a class="card" href="#/entities/${f.id}">
+                <h3>${esc(f.file_name)}</h3>
+                <p>${esc(f.description || 'No description')}</p>
+              </a>
+            `).join('')}
+          </div>
+        </div>
+      `;
+
+      let searchTimer = null;
+      const input = document.getElementById('entities-global-search');
+      const results = document.getElementById('entities-global-results');
+      const loading = document.getElementById('entities-global-loading');
+
+      input.addEventListener('input', () => {
+        const q = input.value.trim();
+        if (searchTimer) clearTimeout(searchTimer);
+        if (!q) { results.innerHTML = ''; loading.textContent = ''; return; }
+        searchTimer = setTimeout(async () => {
+          loading.textContent = 'Searching...';
+          try {
+            const res = await fetchJSON(`/api/entities/search?q=${encodeURIComponent(q)}`);
+            const items = res.items || [];
+            loading.textContent = '';
+            if (!items.length) { results.innerHTML = ''; return; }
+            results.innerHTML = `
+              <div class="table-wrap" style="margin-top:12px">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>entity_uid</th><th>entity_name</th><th>entity_type</th><th>country</th><th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${items.map((r) => `
+                      <tr>
+                        <td>${esc(r.entity_uid)}</td>
+                        <td>${esc(r.entity_name)}</td>
+                        <td>${esc(r.entity_type_code)}</td>
+                        <td>${esc(r.entity_country || '')}</td>
+                        <td><button class="secondary" data-uid="${esc(r.entity_uid)}">Open details</button></td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              </div>
+            `;
+            results.querySelectorAll('button[data-uid]').forEach((btn) => {
+              btn.addEventListener('click', () => showEntityDetails(btn.getAttribute('data-uid')));
+            });
+          } catch (e) {
+            loading.textContent = '';
+            results.innerHTML = `<div class="notice">${esc(e.message || 'Search failed')}</div>`;
+          }
+        }, 250);
+      });
+
+      document.getElementById('entities-add-file').addEventListener('click', () => {
+        showModal({
+          title: 'Add Entities File',
+          content: `
+            <div class="form-grid">
+              <div><label>File name</label><input class="input" id="file-name" /></div>
+              <div><label>Description</label><input class="input" id="file-desc" /></div>
+            </div>
+            <div class="btn-row" style="margin-top:12px">
+              <button id="file-create">Create</button>
+              <button class="secondary" id="file-cancel">Cancel</button>
+            </div>
+          `,
+          onBind: (root, close) => {
+            root.querySelector('#file-cancel').addEventListener('click', close);
+            root.querySelector('#file-create').addEventListener('click', async () => {
+              const name = root.querySelector('#file-name').value.trim();
+              const desc = root.querySelector('#file-desc').value.trim();
+              if (!name) return;
+              await fetchJSON('/api/entities/files', {
+                method: 'POST',
+                body: JSON.stringify({ file_name: name, description: desc || null })
+              });
+              close();
+              showToast('File created');
+              renderEntities();
+            });
+          }
+        });
+      });
+    } catch (e) {
+      app.innerHTML = `<div class="notice">${esc(e.message || 'Failed to load')}</div>`;
+    }
+  }
+
+  async function renderEntitiesFile(fileId) {
+    setActiveTab('/entities');
+    app.innerHTML = '<div>Loading...</div>';
+    try {
+      const data = await fetchJSON(`/api/entities?fileId=${fileId}`);
+      const dicts = await fetchJSON('/api/dictionaries?include=entities');
+      const file = data.file;
+      const rows = data.rows || [];
+
+      app.innerHTML = `
+        <div class="section">
+          <h1 class="section-title">${esc(file.file_name)}</h1>
+          <p>${esc(file.description || '')}</p>
+          <div class="btn-row">
+            <button id="entity-add">Add entity</button>
+            <button class="secondary" id="entity-export">Export CSV</button>
+            <label class="button secondary">
+              Import CSV
+              <input type="file" accept=".csv" id="entity-import" hidden />
+            </label>
+            <button class="ghost" id="entity-template">Download template CSV</button>
+          </div>
+          <div class="form-grid" style="margin-top:14px">
+            <div>
+              <label>Search</label>
+              <input class="input" id="entity-search" placeholder="entity_uid or entity_name" />
+            </div>
+            <div>
+              <label>Type</label>
+              <select id="entity-filter-type">
+                <option value="">All</option>
+                ${dicts.entityTypes.map((t) => `<option value="${esc(t.code)}">${esc(t.title)}</option>`).join('')}
+              </select>
+            </div>
+            <div>
+              <label>Flag</label>
+              <select id="entity-filter-flag">
+                <option value="">All</option>
+                ${dicts.flags.map((f) => `<option value="${esc(f.code)}">${esc(f.code)}</option>`).join('')}
+              </select>
+            </div>
+            <div>
+              <label>Category</label>
+              <select id="entity-filter-category">
+                <option value="">All</option>
+                ${dicts.categories.map((c) => `<option value="${esc(c.category_code)}">${esc(c.title)}</option>`).join('')}
+              </select>
+            </div>
+            <div>
+              <label>Country</label>
+              <input class="input" id="entity-filter-country" placeholder="US" />
+            </div>
+          </div>
+        </div>
+        <div class="section table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>entity_uid</th><th>entity_name</th><th>entity_type</th><th>parent_entity</th><th>entity_description</th><th>entity_country</th><th>flags</th><th>added_at</th><th>comment</th><th></th>
+              </tr>
+            </thead>
+            <tbody id="entity-rows"></tbody>
+          </table>
+        </div>
+      `;
+
+      const renderRows = () => {
+        const search = document.getElementById('entity-search').value.trim().toLowerCase();
+        const filterType = document.getElementById('entity-filter-type').value;
+        const filterFlag = document.getElementById('entity-filter-flag').value;
+        const filterCategory = document.getElementById('entity-filter-category').value;
+        const filterCountry = document.getElementById('entity-filter-country').value.trim();
+        const filtered = rows.filter((r) => {
+          const hay = `${r.entity_uid} ${r.entity_name}`.toLowerCase();
+          if (search && !hay.includes(search)) return false;
+          if (filterType && r.entity_type_code !== filterType) return false;
+          if (filterCountry && (r.entity_country || '') !== filterCountry) return false;
+          if (filterFlag && !(r.flags || []).includes(filterFlag)) return false;
+          if (filterCategory && !(r.categories || []).includes(filterCategory)) return false;
+          return true;
+        });
+        document.getElementById('entity-rows').innerHTML = filtered.map((r) => `
+          <tr>
+            <td>${esc(r.entity_uid)}</td>
+            <td><button class="link" data-details="${esc(r.entity_uid)}">${esc(r.entity_name)}</button></td>
+            <td>${esc(r.entity_type_code)}</td>
+            <td>${esc(r.parent_entity_uid || '')}</td>
+            <td>${esc(r.entity_description || '')}</td>
+            <td>${esc(r.entity_country || '')}</td>
+            <td>${(r.flags || []).map((f) => `<span class="badge">${esc(f)}</span>`).join('')}</td>
+            <td>${esc(fmtDate(r.added_at))}</td>
+            <td>${esc(r.comment || '')}</td>
+            <td>
+              <button class="secondary" data-edit="${esc(r.entity_uid)}">Edit</button>
+              <button class="ghost" data-delete="${esc(r.entity_uid)}">Delete</button>
+            </td>
+          </tr>
+        `).join('');
+
+        document.querySelectorAll('[data-edit]').forEach((btn) => {
+          btn.addEventListener('click', () => openEntityEdit(rows.find((r) => r.entity_uid === btn.getAttribute('data-edit'))));
+        });
+        document.querySelectorAll('[data-delete]').forEach((btn) => {
+          btn.addEventListener('click', () => deleteEntity(btn.getAttribute('data-delete')));
+        });
+        document.querySelectorAll('[data-details]').forEach((btn) => {
+          btn.addEventListener('click', () => showEntityDetails(btn.getAttribute('data-details')));
+        });
+      };
+
+      ['entity-search','entity-filter-type','entity-filter-flag','entity-filter-category','entity-filter-country'].forEach((id) => {
+        document.getElementById(id).addEventListener('input', renderRows);
+        document.getElementById(id).addEventListener('change', renderRows);
+      });
+
+      const templateCsv = [
+        'entity_uid','entity_name','entity_type','parent_entity','entity_description','entity_country','flags','categories','comment'
+      ].join(',');
+
+      document.getElementById('entity-template').addEventListener('click', () => downloadBlob(templateCsv, 'entities_template.csv', 'text/csv'));
+      document.getElementById('entity-export').addEventListener('click', () => {
+        const csv = toCsv(rows.map((r) => ({
+          entity_uid: r.entity_uid,
+          entity_name: r.entity_name,
+          entity_type: r.entity_type_code,
+          parent_entity: r.parent_entity_uid ?? '',
+          entity_description: r.entity_description ?? '',
+          entity_country: r.entity_country ?? '',
+          flags: (r.flags || []).join('|'),
+          categories: (r.categories || []).join('|'),
+          comment: r.comment ?? ''
+        })));
+        downloadBlob(csv, `${file.file_name || 'entities'}.csv`, 'text/csv');
+      });
+
+      document.getElementById('entity-add').addEventListener('click', () => openEntityEdit({
+        entity_uid: '',
+        entity_name: '',
+        entity_type_code: dicts.entityTypes[0]?.code || '',
+        added_at: new Date().toISOString(),
+        flags: [],
+        categories: []
+      }));
+
+      async function deleteEntity(uid) {
+        if (!confirm(`Delete entity "${uid}"? This will clear references in incidents/affiliations.`)) return;
+        await fetchJSON(`/api/entities/${encodeURIComponent(uid)}`, { method: 'DELETE' });
+        showToast('Deleted');
+        renderEntitiesFile(fileId);
+      }
+
+      function openEntityEdit(edit) {
+        const uid = esc(edit.entity_uid || '');
+        showModal({
+          title: 'Entity',
+          content: `
+            <div class="form-grid">
+              <div>
+                <label>entity_uid</label>
+                <input class="input" id="edit-uid" value="${uid}" />
+              </div>
+              <div>
+                <label>entity_name</label>
+                <input class="input" id="edit-name" value="${esc(edit.entity_name || '')}" />
+              </div>
+              <div>
+                <label>entity_type</label>
+                <select id="edit-type">
+                  ${dicts.entityTypes.map((t) => `<option value="${esc(t.code)}" ${t.code === edit.entity_type_code ? 'selected' : ''}>${esc(t.title)}</option>`).join('')}
+                </select>
+                <button class="ghost" style="margin-top:6px" id="add-type">Add new type</button>
+              </div>
+              <div>
+                <label>parent_entity</label>
+                <select id="edit-parent">
+                  <option value="">(none)</option>
+                  ${dicts.entities.map((e) => `<option value="${esc(e.entity_uid)}" ${e.entity_uid === edit.parent_entity_uid ? 'selected' : ''}>${esc(e.entity_uid)}</option>`).join('')}
+                </select>
+              </div>
+              <div>
+                <label>entity_country</label>
+                <input class="input" id="edit-country" value="${esc(edit.entity_country || '')}" />
+              </div>
+              <div>
+                <label>flags</label>
+                <select id="edit-flags" multiple>
+                  ${dicts.flags.map((f) => `<option value="${esc(f.code)}" ${(edit.flags || []).includes(f.code) ? 'selected' : ''}>${esc(f.code)}</option>`).join('')}
+                </select>
+                <button class="ghost" style="margin-top:6px" id="add-flag">Add new flag</button>
+              </div>
+              <div>
+                <label>categories</label>
+                <select id="edit-categories" multiple>
+                  ${dicts.categories.map((c) => `<option value="${esc(c.category_code)}" ${(edit.categories || []).includes(c.category_code) ? 'selected' : ''}>${esc(c.title)}</option>`).join('')}
+                </select>
+                <button class="ghost" style="margin-top:6px" id="add-category">Add new category</button>
+              </div>
+              <div>
+                <label>description</label>
+                <textarea class="input" id="edit-desc">${esc(edit.entity_description || '')}</textarea>
+              </div>
+              <div>
+                <label>comment</label>
+                <textarea class="input" id="edit-comment">${esc(edit.comment || '')}</textarea>
+              </div>
+            </div>
+            <div class="btn-row" style="margin-top:12px">
+              <button id="edit-save">Save</button>
+              <button class="secondary" id="edit-cancel">Cancel</button>
+            </div>
+          `,
+          onBind: (root, close) => {
+            root.querySelector('#edit-cancel').addEventListener('click', close);
+            root.querySelector('#add-type').addEventListener('click', () => showDictionaryAddModal('entity_types', () => renderEntitiesFile(fileId)));
+            root.querySelector('#add-flag').addEventListener('click', () => showDictionaryAddModal('flags', () => renderEntitiesFile(fileId)));
+            root.querySelector('#add-category').addEventListener('click', () => showDictionaryAddModal('entity_categories', () => renderEntitiesFile(fileId)));
+            root.querySelector('#edit-save').addEventListener('click', async () => {
+              const payload = {
+                file_id: fileId,
+                entity_uid: root.querySelector('#edit-uid').value.trim(),
+                entity_name: root.querySelector('#edit-name').value.trim(),
+                entity_type_code: root.querySelector('#edit-type').value,
+                parent_entity_uid: root.querySelector('#edit-parent').value || null,
+                entity_country: root.querySelector('#edit-country').value || null,
+                flags: Array.from(root.querySelector('#edit-flags').selectedOptions).map((o) => o.value),
+                categories: Array.from(root.querySelector('#edit-categories').selectedOptions).map((o) => o.value),
+                entity_description: root.querySelector('#edit-desc').value || null,
+                comment: root.querySelector('#edit-comment').value || null,
+              };
+              const exists = rows.find((r) => r.entity_uid === payload.entity_uid);
+              const method = exists ? 'PATCH' : 'POST';
+              const url = exists ? `/api/entities/${encodeURIComponent(payload.entity_uid)}` : '/api/entities';
+              await fetchJSON(url, { method, body: JSON.stringify(payload) });
+              close();
+              showToast('Saved');
+              renderEntitiesFile(fileId);
+            });
+          }
+        });
+      }
+
+      document.getElementById('entity-import').addEventListener('change', async (e) => {
+        const files = e.target.files;
+        if (!files || !files[0]) return;
+        const text = await files[0].text();
+        const parser = window.Papa ? window.Papa : null;
+        if (!parser) {
+          showToast('PapaParse not loaded.');
+          return;
+        }
+        const parsed = parser.parse(text, { header: true, skipEmptyLines: true });
+        const rowsPreview = parsed.data.slice(0, 20);
+        const res = await fetchJSON('/api/import', {
+          method: 'POST',
+          body: JSON.stringify({ type: 'entities', file_id: fileId, csv: text, dry_run: true })
+        });
+        showModal({
+          title: 'CSV Import Preview',
+          content: `
+            <p>Valid rows: ${esc(res.ok)}. Errors: ${esc(res.errors.length)}.</p>
+            ${res.errors.length ? '<div class="notice">Errors detected. You can still import valid rows. Error rows will be skipped.</div>' : ''}
+            <div class="table-wrap" style="margin-top:12px">
+              <table class="table">
+                <thead><tr>${Object.keys(rowsPreview[0] || {}).map((h) => `<th>${esc(h)}</th>`).join('')}</tr></thead>
+                <tbody>
+                  ${rowsPreview.map((r) => `<tr>${Object.values(r).map((v) => `<td>${esc(v)}</td>`).join('')}</tr>`).join('')}
+                </tbody>
+              </table>
+            </div>
+            <div class="btn-row" style="margin-top:12px">
+              <button id="import-confirm">Import</button>
+              <button class="secondary" id="import-cancel">Cancel</button>
+            </div>
+          `,
+          onBind: (root, close) => {
+            root.querySelector('#import-cancel').addEventListener('click', close);
+            root.querySelector('#import-confirm').addEventListener('click', async () => {
+              const finalRes = await fetchJSON('/api/import', {
+                method: 'POST',
+                body: JSON.stringify({ type: 'entities', file_id: fileId, csv: text })
+              });
+              if (finalRes.errors && finalRes.errors.length) {
+                const errCsv = toCsv(finalRes.errors.map((e) => ({ row: e.row, error: e.error })));
+                downloadBlob(errCsv, 'entities_import_errors.csv', 'text/csv');
+              }
+              close();
+              showToast(`Imported: ${finalRes.ok}, errors: ${finalRes.errors.length}`);
+              renderEntitiesFile(fileId);
+            });
+          }
+        });
+      });
+
+      renderRows();
+    } catch (e) {
+      app.innerHTML = `<div class="notice">${esc(e.message || 'Failed to load')}</div>`;
+    }
+  }
+
+  async function renderAffiliations() {
+    setActiveTab('/affiliations');
+    app.innerHTML = '<div>Loading...</div>';
+    try {
+      const [folders, dicts] = await Promise.all([
+        fetchJSON('/api/affiliations/folders'),
+        fetchJSON('/api/dictionaries?include=entities')
+      ]);
+      app.innerHTML = `
+        <div class="section">
+          <h1 class="section-title">Affiliations</h1>
+          <div class="btn-row"><button id="aff-add-folder">Add folder</button></div>
+        </div>
+        <div class="section">
+          <div class="card-grid">
+            ${folders.map((f) => `
+              <a class="card" href="#/affiliations/${f.id}">
+                <h3>${esc(f.folder_name)}</h3>
+                <p>${esc(f.network_code)}</p>
+              </a>
+            `).join('')}
+          </div>
+        </div>
+      `;
+
+      document.getElementById('aff-add-folder').addEventListener('click', () => {
+        showModal({
+          title: 'Add Folder',
+          content: `
+            <div class="form-grid">
+              <div><label>Folder name</label><input class="input" id="folder-name" /></div>
+              <div>
+                <label>Network</label>
+                <select id="folder-network">
+                  ${dicts.networks.map((n) => `<option value="${esc(n.code)}">${esc(n.title)}</option>`).join('')}
+                </select>
+              </div>
+            </div>
+            <div class="btn-row" style="margin-top:12px">
+              <button id="folder-create">Create</button>
+              <button class="secondary" id="folder-cancel">Cancel</button>
+            </div>
+          `,
+          onBind: (root, close) => {
+            root.querySelector('#folder-cancel').addEventListener('click', close);
+            root.querySelector('#folder-create').addEventListener('click', async () => {
+              const name = root.querySelector('#folder-name').value.trim();
+              const network = root.querySelector('#folder-network').value;
+              if (!name) return;
+              await fetchJSON('/api/affiliations/folders', {
+                method: 'POST',
+                body: JSON.stringify({ folder_name: name, network_code: network })
+              });
+              close();
+              showToast('Folder created');
+              renderAffiliations();
+            });
+          }
+        });
+      });
+    } catch (e) {
+      app.innerHTML = `<div class="notice">${esc(e.message || 'Failed to load')}</div>`;
+    }
+  }
+
+  async function renderAffiliationsFolder(folderId) {
+    setActiveTab('/affiliations');
+    app.innerHTML = '<div>Loading...</div>';
+    try {
+      const [data, dicts] = await Promise.all([
+        fetchJSON(`/api/affiliations?folderId=${folderId}`),
+        fetchJSON('/api/dictionaries?include=entities')
+      ]);
+      const folder = data.folder;
+      const rows = data.rows || [];
+
+      app.innerHTML = `
+        <div class="section">
+          <h1 class="section-title">${esc(folder.folder_name)}</h1>
+          <div class="btn-row">
+            <button id="aff-add">Add address</button>
+            <button class="secondary" id="aff-export">Export CSV</button>
+            <label class="button secondary">
+              Import CSV
+              <input type="file" accept=".csv" id="aff-import" hidden />
+            </label>
+            <button class="ghost" id="aff-template">Download template CSV</button>
+          </div>
+          <div class="form-grid" style="margin-top:14px">
+            <div><label>Search</label><input class="input" id="aff-search" placeholder="address / entity / source" /></div>
+            <div>
+              <label>Network</label>
+              <select id="aff-filter-network">
+                <option value="">All</option>
+                ${dicts.networks.map((n) => `<option value="${esc(n.code)}">${esc(n.title)}</option>`).join('')}
+              </select>
+            </div>
+            <div>
+              <label>Role</label>
+              <select id="aff-filter-role">
+                <option value="">All</option>
+                ${dicts.addressRoles.map((r) => `<option value="${esc(r.code)}">${esc(r.title)}</option>`).join('')}
+              </select>
+            </div>
+            <div><label>Source</label><input class="input" id="aff-filter-source" placeholder="manual" /></div>
+            <div><label>From</label><input class="input" id="aff-filter-from" type="date" /></div>
+            <div><label>To</label><input class="input" id="aff-filter-to" type="date" /></div>
+          </div>
+        </div>
+        <div class="section table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>network</th><th>address</th><th>entity_uid</th><th>address_role</th><th>source</th><th>analyst</th><th>added_at</th><th>comment</th><th>ext_name</th><th>ext_category</th><th></th>
+              </tr>
+            </thead>
+            <tbody id="aff-rows"></tbody>
+          </table>
+        </div>
+      `;
+
+      const templateHeaders = [
+        'network','address','entity_uid','address_role','source','analyst','added_at','comment','ext_name','ext_category','ext_wallet_name','ext_label','is_hidden'
+      ];
+
+      const renderRows = () => {
+        const search = document.getElementById('aff-search').value.trim().toLowerCase();
+        const filterNetwork = document.getElementById('aff-filter-network').value;
+        const filterRole = document.getElementById('aff-filter-role').value;
+        const filterSource = document.getElementById('aff-filter-source').value.trim();
+        const filterFrom = document.getElementById('aff-filter-from').value;
+        const filterTo = document.getElementById('aff-filter-to').value;
+        const filtered = rows.filter((r) => {
+          const hay = `${r.address} ${r.entity_uid || ''} ${r.source}`.toLowerCase();
+          if (search && !hay.includes(search)) return false;
+          if (filterNetwork && r.network_code !== filterNetwork) return false;
+          if (filterRole && (r.address_role_code || '') !== filterRole) return false;
+          if (filterSource && (r.source || '') !== filterSource) return false;
+          if (filterFrom) {
+            const d = r.added_at ? new Date(r.added_at) : null;
+            if (!d || d < new Date(filterFrom)) return false;
+          }
+          if (filterTo) {
+            const d = r.added_at ? new Date(r.added_at) : null;
+            if (!d || d > new Date(filterTo)) return false;
+          }
+          return true;
+        });
+        document.getElementById('aff-rows').innerHTML = filtered.map((r) => `
+          <tr>
+            <td>${esc(r.network_code)}</td>
+            <td>${esc(r.address)}</td>
+            <td>${esc(r.entity_uid || '')}</td>
+            <td>${esc(r.address_role_code || '')}</td>
+            <td>${esc(r.source)}</td>
+            <td>${esc(r.analyst || '')}</td>
+            <td>${esc(fmtDate(r.added_at))}</td>
+            <td>${esc(r.comment || '')}</td>
+            <td>${esc(r.ext_name || '')}</td>
+            <td>${esc(r.ext_category || '')}</td>
+            <td>
+              <button class="secondary" data-edit="${esc(r.id)}">Edit</button>
+              <button class="ghost" data-delete="${esc(r.id)}">Delete</button>
+            </td>
+          </tr>
+        `).join('');
+
+        document.querySelectorAll('[data-edit]').forEach((btn) => {
+          btn.addEventListener('click', () => openAffEdit(rows.find((r) => String(r.id) === btn.getAttribute('data-edit'))));
+        });
+        document.querySelectorAll('[data-delete]').forEach((btn) => {
+          btn.addEventListener('click', () => deleteAff(Number(btn.getAttribute('data-delete'))));
+        });
+      };
+
+      ['aff-search','aff-filter-network','aff-filter-role','aff-filter-source','aff-filter-from','aff-filter-to'].forEach((id) => {
+        document.getElementById(id).addEventListener('input', renderRows);
+        document.getElementById(id).addEventListener('change', renderRows);
+      });
+
+      document.getElementById('aff-template').addEventListener('click', () => downloadBlob(templateHeaders.join(','), 'affiliations_template.csv', 'text/csv'));
+      document.getElementById('aff-export').addEventListener('click', () => {
+        const csv = toCsv(rows.map((r) => ({
+          network: r.network_code,
+          address: r.address,
+          entity_uid: r.entity_uid ?? '',
+          address_role: r.address_role_code ?? '',
+          source: r.source,
+          analyst: r.analyst ?? '',
+          added_at: r.added_at ?? '',
+          comment: r.comment ?? '',
+          ext_name: r.ext_name ?? '',
+          ext_category: r.ext_category ?? '',
+          ext_wallet_name: r.ext_wallet_name ?? '',
+          ext_label: r.ext_label ?? '',
+          is_hidden: r.is_hidden ? 'true' : 'false'
+        })));
+        downloadBlob(csv, `${folder.folder_name || 'affiliations'}.csv`, 'text/csv');
+      });
+
+      document.getElementById('aff-add').addEventListener('click', () => openAffEdit({ folder_id: folderId, network_code: folder.network_code, address: '', source: '' }));
+
+      async function deleteAff(id) {
+        if (!id) return;
+        if (!confirm(`Delete affiliation #${id}?`)) return;
+        await fetchJSON(`/api/affiliations/${id}`, { method: 'DELETE' });
+        showToast('Deleted');
+        renderAffiliationsFolder(folderId);
+      }
+
+      function openAffEdit(edit) {
+        showModal({
+          title: 'Affiliation',
+          content: `
+            <div class="form-grid">
+              <div>
+                <label>network</label>
+                <select id="aff-network">
+                  ${dicts.networks.map((n) => `<option value="${esc(n.code)}" ${n.code === edit.network_code ? 'selected' : ''}>${esc(n.title)}</option>`).join('')}
+                </select>
+              </div>
+              <div><label>address</label><input class="input" id="aff-address" value="${esc(edit.address || '')}" /></div>
+              <div><label>entity_uid</label><input class="input" id="aff-uid" value="${esc(edit.entity_uid || '')}" /></div>
+              <div>
+                <label>address_role</label>
+                <select id="aff-role">
+                  <option value="">(none)</option>
+                  ${dicts.addressRoles.map((r) => `<option value="${esc(r.code)}" ${r.code === edit.address_role_code ? 'selected' : ''}>${esc(r.title)}</option>`).join('')}
+                </select>
+                <button class="ghost" style="margin-top:6px" id="add-role">Add new role</button>
+              </div>
+              <div><label>source</label><input class="input" id="aff-source" value="${esc(edit.source || '')}" /></div>
+              <div><label>analyst</label><input class="input" id="aff-analyst" value="${esc(edit.analyst || '')}" /></div>
+              <div><label>comment</label><textarea class="input" id="aff-comment">${esc(edit.comment || '')}</textarea></div>
+              <div><label>ext_name</label><input class="input" id="aff-ext-name" value="${esc(edit.ext_name || '')}" /></div>
+              <div><label>ext_category</label><input class="input" id="aff-ext-category" value="${esc(edit.ext_category || '')}" /></div>
+              <div><label>ext_wallet_name</label><input class="input" id="aff-ext-wallet" value="${esc(edit.ext_wallet_name || '')}" /></div>
+              <div><label>ext_label</label><input class="input" id="aff-ext-label" value="${esc(edit.ext_label || '')}" /></div>
+              <div>
+                <label>is_hidden</label>
+                <select id="aff-hidden">
+                  <option value="false" ${edit.is_hidden ? '' : 'selected'}>false</option>
+                  <option value="true" ${edit.is_hidden ? 'selected' : ''}>true</option>
+                </select>
+              </div>
+            </div>
+            <div class="btn-row" style="margin-top:12px">
+              <button id="aff-save">Save</button>
+              <button class="secondary" id="aff-cancel">Cancel</button>
+            </div>
+          `,
+          onBind: (root, close) => {
+            root.querySelector('#aff-cancel').addEventListener('click', close);
+            root.querySelector('#add-role').addEventListener('click', () => showDictionaryAddModal('address_roles', () => renderAffiliationsFolder(folderId)));
+            root.querySelector('#aff-save').addEventListener('click', async () => {
+              const payload = {
+                id: edit.id,
+                folder_id: folderId,
+                network_code: root.querySelector('#aff-network').value,
+                address: root.querySelector('#aff-address').value.trim(),
+                entity_uid: root.querySelector('#aff-uid').value.trim() || null,
+                address_role_code: root.querySelector('#aff-role').value || null,
+                source: root.querySelector('#aff-source').value.trim(),
+                analyst: root.querySelector('#aff-analyst').value.trim() || null,
+                comment: root.querySelector('#aff-comment').value.trim() || null,
+                ext_name: root.querySelector('#aff-ext-name').value.trim() || null,
+                ext_category: root.querySelector('#aff-ext-category').value.trim() || null,
+                ext_wallet_name: root.querySelector('#aff-ext-wallet').value.trim() || null,
+                ext_label: root.querySelector('#aff-ext-label').value.trim() || null,
+                is_hidden: root.querySelector('#aff-hidden').value === 'true'
+              };
+
+              if (payload.entity_uid) {
+                const exists = await fetchJSON(`/api/entities/exists?uid=${encodeURIComponent(payload.entity_uid)}`);
+                if (!exists.exists) {
+                  showModal({
+                    title: 'Unknown entity_uid',
+                    content: `
+                      <p class="notice">Entity with UID "${esc(payload.entity_uid)}" not found. Choose an action:</p>
+                      <div class="btn-row" style="margin-top:12px">
+                        <button data-action="create" data-type="organization">Create placeholder (organization)</button>
+                        <button class="secondary" data-action="create" data-type="individual">Create placeholder (individual)</button>
+                        <button class="secondary" data-action="create" data-type="address">Create placeholder (address)</button>
+                        <button class="ghost" data-action="unknown">Set entity_uid = UNKNOWN</button>
+                        <button class="secondary" data-action="fix">Fix manually</button>
+                      </div>
+                    `,
+                    onBind: (modal, modalClose) => {
+                      modal.querySelectorAll('[data-action]').forEach((btn) => {
+                        btn.addEventListener('click', async () => {
+                          const action = btn.getAttribute('data-action');
+                          if (action === 'fix') { modalClose(); return; }
+                          if (action === 'create') {
+                            await fetchJSON('/api/entities', {
+                              method: 'POST',
+                              body: JSON.stringify({
+                                file_id: null,
+                                entity_uid: payload.entity_uid,
+                                entity_name: payload.entity_uid,
+                                entity_type_code: btn.getAttribute('data-type') || 'organization'
+                              })
+                            });
+                          }
+                          if (action === 'unknown') {
+                            payload.entity_uid = 'UNKNOWN';
+                          }
+                          modalClose();
+                          await saveAff(payload);
+                        });
+                      });
+                    }
+                  });
+                  return;
+                }
+              }
+              await saveAff(payload);
+            });
+          }
+        });
+      }
+
+      async function saveAff(payload) {
+        const method = payload.id ? 'PATCH' : 'POST';
+        const url = payload.id ? `/api/affiliations/${payload.id}` : '/api/affiliations';
+        await fetchJSON(url, { method, body: JSON.stringify(payload) });
+        showToast('Saved');
+        renderAffiliationsFolder(folderId);
+      }
+
+      document.getElementById('aff-import').addEventListener('change', async (e) => {
+        const files = e.target.files;
+        if (!files || !files[0]) return;
+        const text = await files[0].text();
+        const parser = window.Papa ? window.Papa : null;
+        if (!parser) { showToast('PapaParse not loaded.'); return; }
+        const parsed = parser.parse(text, { header: true, skipEmptyLines: true });
+        const rowsPreview = parsed.data.slice(0, 20);
+        const res = await fetchJSON('/api/import', {
+          method: 'POST',
+          body: JSON.stringify({ type: 'affiliations', folder_id: folderId, csv: text, dry_run: true })
+        });
+        const unknownUids = res.unknownUids || [];
+        let unknownActions = {};
+        unknownUids.forEach((uid) => { unknownActions[uid] = { action: 'skip' }; });
+        let applyAll = 'skip';
+
+        showModal({
+          title: 'CSV Import Preview',
+          content: `
+            <p>Valid rows: ${esc(res.ok)}. Errors: ${esc(res.errors.length)}.</p>
+            ${unknownUids.length ? `<div class="notice">Unknown entity_uid: ${esc(unknownUids.join(', '))}</div>` : ''}
+            ${unknownUids.length ? `
+              <div style="margin-top:12px">
+                <label>Unknown entity_uid actions</label>
+                <div class="form-grid">
+                  <div>
+                    <label>Apply to all</label>
+                    <select id="unknown-apply-all">
+                      <option value="skip">Fix manually (skip rows)</option>
+                      <option value="unknown">Set entity_uid = UNKNOWN</option>
+                      <option value="create">Create placeholder (organization)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="table-wrap" style="margin-top:12px">
+                  <table class="table">
+                    <thead><tr><th>entity_uid</th><th>action</th><th>type</th></tr></thead>
+                    <tbody>
+                      ${unknownUids.map((uid) => `
+                        <tr data-uid="${esc(uid)}">
+                          <td>${esc(uid)}</td>
+                          <td>
+                            <select class="unknown-action">
+                              <option value="skip">Fix manually (skip)</option>
+                              <option value="unknown">Set UNKNOWN</option>
+                              <option value="create">Create placeholder</option>
+                            </select>
+                          </td>
+                          <td>
+                            <select class="unknown-type" disabled>
+                              ${dicts.entityTypes.map((t) => `<option value="${esc(t.code)}">${esc(t.title)}</option>`).join('')}
+                            </select>
+                          </td>
+                        </tr>
+                      `).join('')}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ` : ''}
+            <div class="table-wrap" style="margin-top:12px">
+              <table class="table">
+                <thead><tr>${Object.keys(rowsPreview[0] || {}).map((h) => `<th>${esc(h)}</th>`).join('')}</tr></thead>
+                <tbody>
+                  ${rowsPreview.map((r) => `<tr>${Object.values(r).map((v) => `<td>${esc(v)}</td>`).join('')}</tr>`).join('')}
+                </tbody>
+              </table>
+            </div>
+            <div class="btn-row" style="margin-top:12px">
+              <button id="import-confirm">Import</button>
+              <button class="secondary" id="import-cancel">Cancel</button>
+            </div>
+          `,
+          onBind: (root, close) => {
+            const applySelect = root.querySelector('#unknown-apply-all');
+            if (applySelect) {
+              applySelect.value = applyAll;
+              applySelect.addEventListener('change', () => {
+                applyAll = applySelect.value;
+                root.querySelectorAll('tr[data-uid]').forEach((row) => {
+                  const action = row.querySelector('.unknown-action');
+                  const type = row.querySelector('.unknown-type');
+                  action.value = applyAll;
+                  type.disabled = applyAll !== 'create';
+                  unknownActions[row.getAttribute('data-uid')] = { action: applyAll, entity_type_code: applyAll === 'create' ? type.value : undefined };
+                });
+              });
+            }
+            root.querySelectorAll('tr[data-uid]').forEach((row) => {
+              const uid = row.getAttribute('data-uid');
+              const action = row.querySelector('.unknown-action');
+              const type = row.querySelector('.unknown-type');
+              action.addEventListener('change', () => {
+                type.disabled = action.value !== 'create';
+                unknownActions[uid] = { action: action.value, entity_type_code: action.value === 'create' ? type.value : undefined };
+              });
+              type.addEventListener('change', () => {
+                unknownActions[uid] = { action: action.value, entity_type_code: type.value };
+              });
+              unknownActions[uid] = { action: action.value, entity_type_code: undefined };
+            });
+
+            root.querySelector('#import-cancel').addEventListener('click', close);
+            root.querySelector('#import-confirm').addEventListener('click', async () => {
+              const finalRes = await fetchJSON('/api/import', {
+                method: 'POST',
+                body: JSON.stringify({ type: 'affiliations', folder_id: folderId, csv: text, unknown_actions: unknownActions })
+              });
+              if (finalRes.errors && finalRes.errors.length) {
+                const errCsv = toCsv(finalRes.errors.map((e) => ({ row: e.row, error: e.error })));
+                downloadBlob(errCsv, 'affiliations_import_errors.csv', 'text/csv');
+              }
+              close();
+              const skipped = finalRes.skipped ? `, skipped: ${finalRes.skipped}` : '';
+              showToast(`Imported: ${finalRes.ok}, errors: ${finalRes.errors.length}${skipped}`);
+              renderAffiliationsFolder(folderId);
+            });
+          }
+        });
+      });
+
+      renderRows();
+    } catch (e) {
+      app.innerHTML = `<div class="notice">${esc(e.message || 'Failed to load')}</div>`;
+    }
+  }
+
+  async function renderIncidents() {
+    setActiveTab('/incidents');
+    app.innerHTML = '<div>Loading...</div>';
+    try {
+      const files = await fetchJSON('/api/incidents/files');
+      app.innerHTML = `
+        <div class="section">
+          <h1 class="section-title">Incidents</h1>
+          <div class="btn-row"><button id="inc-add-file">Add file</button></div>
+        </div>
+        <div class="section">
+          <div class="card-grid">
+            ${files.map((f) => `
+              <a class="card" href="#/incidents/${f.id}">
+                <h3>${esc(f.file_name)}</h3>
+                <p>${esc(f.month)}</p>
+              </a>
+            `).join('')}
+          </div>
+        </div>
+      `;
+
+      document.getElementById('inc-add-file').addEventListener('click', () => {
+        showModal({
+          title: 'Add Incidents File',
+          content: `
+            <div class="form-grid">
+              <div><label>File name</label><input class="input" id="inc-name" /></div>
+              <div><label>Month (YYYY-MM)</label><input class="input" id="inc-month" /></div>
+            </div>
+            <div class="btn-row" style="margin-top:12px">
+              <button id="inc-create">Create</button>
+              <button class="secondary" id="inc-cancel">Cancel</button>
+            </div>
+          `,
+          onBind: (root, close) => {
+            root.querySelector('#inc-cancel').addEventListener('click', close);
+            root.querySelector('#inc-create').addEventListener('click', async () => {
+              const name = root.querySelector('#inc-name').value.trim();
+              const month = root.querySelector('#inc-month').value.trim();
+              if (!name || !month) return;
+              await fetchJSON('/api/incidents/files', { method: 'POST', body: JSON.stringify({ file_name: name, month }) });
+              close();
+              showToast('File created');
+              renderIncidents();
+            });
+          }
+        });
+      });
+    } catch (e) {
+      app.innerHTML = `<div class="notice">${esc(e.message || 'Failed to load')}</div>`;
+    }
+  }
+
+  async function renderIncidentsFile(fileId) {
+    setActiveTab('/incidents');
+    app.innerHTML = '<div>Loading...</div>';
+    try {
+      const [data, dicts] = await Promise.all([
+        fetchJSON(`/api/incidents?fileId=${fileId}`),
+        fetchJSON('/api/dictionaries?include=entities')
+      ]);
+      const file = data.file;
+      const rows = data.rows || [];
+
+      app.innerHTML = `
+        <div class="section">
+          <h1 class="section-title">${esc(file.file_name)}</h1>
+          <div class="btn-row">
+            <button id="inc-add">Add incident</button>
+            <button class="secondary" id="inc-export">Export CSV</button>
+            <label class="button secondary">
+              Import CSV
+              <input type="file" accept=".csv" id="inc-import" hidden />
+            </label>
+            <button class="ghost" id="inc-template">Download template CSV</button>
+          </div>
+          <div class="form-grid" style="margin-top:14px">
+            <div><label>Search</label><input class="input" id="inc-search" placeholder="address / entity / source" /></div>
+            <div>
+              <label>Network</label>
+              <select id="inc-filter-network">
+                <option value="">All</option>
+                ${dicts.networks.map((n) => `<option value="${esc(n.code)}">${esc(n.title)}</option>`).join('')}
+              </select>
+            </div>
+            <div>
+              <label>Incident type</label>
+              <select id="inc-filter-type">
+                <option value="">All</option>
+                ${dicts.incidentTypes.map((t) => `<option value="${esc(t.code)}">${esc(t.title)}</option>`).join('')}
+              </select>
+            </div>
+            <div><label>Source</label><input class="input" id="inc-filter-source" placeholder="manual" /></div>
+            <div><label>From</label><input class="input" id="inc-filter-from" type="date" /></div>
+            <div><label>To</label><input class="input" id="inc-filter-to" type="date" /></div>
+          </div>
+        </div>
+        <div class="section table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>network</th><th>address</th><th>entity_uid</th><th>incident_type</th><th>incident_date</th><th>source</th><th>wallet_role</th><th>added_at</th><th>analyst</th><th></th>
+              </tr>
+            </thead>
+            <tbody id="inc-rows"></tbody>
+          </table>
+        </div>
+      `;
+
+      const templateHeaders = [
+        'network','address','entity_uid','incident_type','incident_date','source','wallet_role','added_at','analyst','tx_hashes'
+      ];
+
+      const renderRows = () => {
+        const search = document.getElementById('inc-search').value.trim().toLowerCase();
+        const filterNetwork = document.getElementById('inc-filter-network').value;
+        const filterType = document.getElementById('inc-filter-type').value;
+        const filterSource = document.getElementById('inc-filter-source').value.trim();
+        const filterFrom = document.getElementById('inc-filter-from').value;
+        const filterTo = document.getElementById('inc-filter-to').value;
+        const filtered = rows.filter((r) => {
+          const hay = `${r.address} ${r.entity_uid || ''} ${r.source}`.toLowerCase();
+          if (search && !hay.includes(search)) return false;
+          if (filterNetwork && r.network_code !== filterNetwork) return false;
+          if (filterType && r.incident_type_code !== filterType) return false;
+          if (filterSource && (r.source || '') !== filterSource) return false;
+          if (filterFrom) {
+            const d = r.incident_date ? new Date(r.incident_date) : null;
+            if (!d || d < new Date(filterFrom)) return false;
+          }
+          if (filterTo) {
+            const d = r.incident_date ? new Date(r.incident_date) : null;
+            if (!d || d > new Date(filterTo)) return false;
+          }
+          return true;
+        });
+        document.getElementById('inc-rows').innerHTML = filtered.map((r) => `
+          <tr>
+            <td>${esc(r.network_code)}</td>
+            <td>${esc(r.address)}</td>
+            <td>${esc(r.entity_uid || '')}</td>
+            <td>${esc(r.incident_type_code)}</td>
+            <td>${esc(r.incident_date ? r.incident_date.slice(0, 10) : '')}</td>
+            <td>${esc(r.source)}</td>
+            <td>${esc(r.wallet_role || '')}</td>
+            <td>${esc(fmtDate(r.added_at))}</td>
+            <td>${esc(r.analyst || '')}</td>
+            <td>
+              <button class="secondary" data-edit="${esc(r.id)}">Edit</button>
+              <button class="ghost" data-delete="${esc(r.id)}">Delete</button>
+            </td>
+          </tr>
+        `).join('');
+
+        document.querySelectorAll('[data-edit]').forEach((btn) => {
+          btn.addEventListener('click', () => openIncEdit(rows.find((r) => String(r.id) === btn.getAttribute('data-edit'))));
+        });
+        document.querySelectorAll('[data-delete]').forEach((btn) => {
+          btn.addEventListener('click', () => deleteInc(Number(btn.getAttribute('data-delete'))));
+        });
+      };
+
+      ['inc-search','inc-filter-network','inc-filter-type','inc-filter-source','inc-filter-from','inc-filter-to'].forEach((id) => {
+        document.getElementById(id).addEventListener('input', renderRows);
+        document.getElementById(id).addEventListener('change', renderRows);
+      });
+
+      document.getElementById('inc-template').addEventListener('click', () => downloadBlob(templateHeaders.join(','), 'incidents_template.csv', 'text/csv'));
+      document.getElementById('inc-export').addEventListener('click', () => {
+        const csv = toCsv(rows.map((r) => ({
+          network: r.network_code,
+          address: r.address,
+          entity_uid: r.entity_uid ?? '',
+          incident_type: r.incident_type_code,
+          incident_date: r.incident_date ? r.incident_date.slice(0, 10) : '',
+          source: r.source,
+          wallet_role: r.wallet_role ?? '',
+          added_at: r.added_at ?? '',
+          analyst: r.analyst ?? '',
+          tx_hashes: r.tx_hashes ?? ''
+        })));
+        downloadBlob(csv, `${file.file_name || 'incidents'}.csv`, 'text/csv');
+      });
+
+      document.getElementById('inc-add').addEventListener('click', () => openIncEdit({
+        file_id: fileId,
+        network_code: dicts.networks[0]?.code || 'EVM',
+        address: '',
+        incident_type_code: dicts.incidentTypes[0]?.code || 'scam',
+        incident_date: new Date().toISOString().slice(0, 10),
+        source: 'manual'
+      }));
+
+      async function deleteInc(id) {
+        if (!id) return;
+        if (!confirm(`Delete incident #${id}?`)) return;
+        await fetchJSON(`/api/incidents/${id}`, { method: 'DELETE' });
+        showToast('Deleted');
+        renderIncidentsFile(fileId);
+      }
+
+      function openIncEdit(edit) {
+        showModal({
+          title: 'Incident',
+          content: `
+            <div class="form-grid">
+              <div>
+                <label>network</label>
+                <select id="inc-network">
+                  ${dicts.networks.map((n) => `<option value="${esc(n.code)}" ${n.code === edit.network_code ? 'selected' : ''}>${esc(n.title)}</option>`).join('')}
+                </select>
+              </div>
+              <div><label>address</label><input class="input" id="inc-address" value="${esc(edit.address || '')}" /></div>
+              <div><label>entity_uid</label><input class="input" id="inc-uid" value="${esc(edit.entity_uid || '')}" /></div>
+              <div>
+                <label>incident_type</label>
+                <select id="inc-type">
+                  ${dicts.incidentTypes.map((t) => `<option value="${esc(t.code)}" ${t.code === edit.incident_type_code ? 'selected' : ''}>${esc(t.title)}</option>`).join('')}
+                </select>
+                <button class="ghost" style="margin-top:6px" id="add-inc-type">Add new incident type</button>
+              </div>
+              <div><label>incident_date</label><input class="input" type="date" id="inc-date" value="${esc(edit.incident_date ? edit.incident_date.slice(0, 10) : '')}" /></div>
+              <div><label>source</label><input class="input" id="inc-source" value="${esc(edit.source || '')}" /></div>
+              <div><label>wallet_role</label><input class="input" id="inc-role" value="${esc(edit.wallet_role || '')}" /></div>
+              <div><label>analyst</label><input class="input" id="inc-analyst" value="${esc(edit.analyst || '')}" /></div>
+              <div><label>tx_hashes</label><textarea class="input" id="inc-tx">${esc(edit.tx_hashes || '')}</textarea></div>
+            </div>
+            <div class="btn-row" style="margin-top:12px">
+              <button id="inc-save">Save</button>
+              <button class="secondary" id="inc-cancel">Cancel</button>
+            </div>
+          `,
+          onBind: (root, close) => {
+            root.querySelector('#inc-cancel').addEventListener('click', close);
+            root.querySelector('#add-inc-type').addEventListener('click', () => showDictionaryAddModal('incident_types', () => renderIncidentsFile(fileId)));
+            root.querySelector('#inc-save').addEventListener('click', async () => {
+              const payload = {
+                id: edit.id,
+                file_id: fileId,
+                network_code: root.querySelector('#inc-network').value,
+                address: root.querySelector('#inc-address').value.trim(),
+                entity_uid: root.querySelector('#inc-uid').value.trim() || null,
+                incident_type_code: root.querySelector('#inc-type').value,
+                incident_date: root.querySelector('#inc-date').value,
+                source: root.querySelector('#inc-source').value.trim(),
+                wallet_role: root.querySelector('#inc-role').value.trim() || null,
+                analyst: root.querySelector('#inc-analyst').value.trim() || null,
+                tx_hashes: root.querySelector('#inc-tx').value.trim() || null
+              };
+              if (payload.entity_uid) {
+                const exists = await fetchJSON(`/api/entities/exists?uid=${encodeURIComponent(payload.entity_uid)}`);
+                if (!exists.exists) {
+                  showModal({
+                    title: 'Unknown entity_uid',
+                    content: `
+                      <p class="notice">Entity with UID "${esc(payload.entity_uid)}" not found. Choose an action:</p>
+                      <div class="btn-row" style="margin-top:12px">
+                        <button data-action="create" data-type="organization">Create placeholder (organization)</button>
+                        <button class="secondary" data-action="create" data-type="individual">Create placeholder (individual)</button>
+                        <button class="secondary" data-action="create" data-type="address">Create placeholder (address)</button>
+                        <button class="ghost" data-action="unknown">Set entity_uid = UNKNOWN</button>
+                        <button class="secondary" data-action="fix">Fix manually</button>
+                      </div>
+                    `,
+                    onBind: (modal, modalClose) => {
+                      modal.querySelectorAll('[data-action]').forEach((btn) => {
+                        btn.addEventListener('click', async () => {
+                          const action = btn.getAttribute('data-action');
+                          if (action === 'fix') { modalClose(); return; }
+                          if (action === 'create') {
+                            await fetchJSON('/api/entities', {
+                              method: 'POST',
+                              body: JSON.stringify({
+                                file_id: null,
+                                entity_uid: payload.entity_uid,
+                                entity_name: payload.entity_uid,
+                                entity_type_code: btn.getAttribute('data-type') || 'organization'
+                              })
+                            });
+                          }
+                          if (action === 'unknown') {
+                            payload.entity_uid = 'UNKNOWN';
+                          }
+                          modalClose();
+                          await saveInc(payload);
+                        });
+                      });
+                    }
+                  });
+                  return;
+                }
+              }
+              await saveInc(payload);
+            });
+          }
+        });
+      }
+
+      async function saveInc(payload) {
+        const method = payload.id ? 'PATCH' : 'POST';
+        const url = payload.id ? `/api/incidents/${payload.id}` : '/api/incidents';
+        await fetchJSON(url, { method, body: JSON.stringify(payload) });
+        showToast('Saved');
+        renderIncidentsFile(fileId);
+      }
+
+      document.getElementById('inc-import').addEventListener('change', async (e) => {
+        const files = e.target.files;
+        if (!files || !files[0]) return;
+        const text = await files[0].text();
+        const parser = window.Papa ? window.Papa : null;
+        if (!parser) { showToast('PapaParse not loaded.'); return; }
+        const parsed = parser.parse(text, { header: true, skipEmptyLines: true });
+        const rowsPreview = parsed.data.slice(0, 20);
+        const res = await fetchJSON('/api/import', {
+          method: 'POST',
+          body: JSON.stringify({ type: 'incidents', file_id: fileId, csv: text, dry_run: true })
+        });
+        const unknownUids = res.unknownUids || [];
+        let unknownActions = {};
+        unknownUids.forEach((uid) => { unknownActions[uid] = { action: 'skip' }; });
+        let applyAll = 'skip';
+
+        showModal({
+          title: 'CSV Import Preview',
+          content: `
+            <p>Valid rows: ${esc(res.ok)}. Errors: ${esc(res.errors.length)}.</p>
+            ${unknownUids.length ? `<div class="notice">Unknown entity_uid: ${esc(unknownUids.join(', '))}</div>` : ''}
+            ${unknownUids.length ? `
+              <div style="margin-top:12px">
+                <label>Unknown entity_uid actions</label>
+                <div class="form-grid">
+                  <div>
+                    <label>Apply to all</label>
+                    <select id="unknown-apply-all">
+                      <option value="skip">Fix manually (skip rows)</option>
+                      <option value="unknown">Set entity_uid = UNKNOWN</option>
+                      <option value="create">Create placeholder (organization)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="table-wrap" style="margin-top:12px">
+                  <table class="table">
+                    <thead><tr><th>entity_uid</th><th>action</th><th>type</th></tr></thead>
+                    <tbody>
+                      ${unknownUids.map((uid) => `
+                        <tr data-uid="${esc(uid)}">
+                          <td>${esc(uid)}</td>
+                          <td>
+                            <select class="unknown-action">
+                              <option value="skip">Fix manually (skip)</option>
+                              <option value="unknown">Set UNKNOWN</option>
+                              <option value="create">Create placeholder</option>
+                            </select>
+                          </td>
+                          <td>
+                            <select class="unknown-type" disabled>
+                              ${dicts.entityTypes.map((t) => `<option value="${esc(t.code)}">${esc(t.title)}</option>`).join('')}
+                            </select>
+                          </td>
+                        </tr>
+                      `).join('')}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ` : ''}
+            <div class="table-wrap" style="margin-top:12px">
+              <table class="table">
+                <thead><tr>${Object.keys(rowsPreview[0] || {}).map((h) => `<th>${esc(h)}</th>`).join('')}</tr></thead>
+                <tbody>
+                  ${rowsPreview.map((r) => `<tr>${Object.values(r).map((v) => `<td>${esc(v)}</td>`).join('')}</tr>`).join('')}
+                </tbody>
+              </table>
+            </div>
+            <div class="btn-row" style="margin-top:12px">
+              <button id="import-confirm">Import</button>
+              <button class="secondary" id="import-cancel">Cancel</button>
+            </div>
+          `,
+          onBind: (root, close) => {
+            const applySelect = root.querySelector('#unknown-apply-all');
+            if (applySelect) {
+              applySelect.value = applyAll;
+              applySelect.addEventListener('change', () => {
+                applyAll = applySelect.value;
+                root.querySelectorAll('tr[data-uid]').forEach((row) => {
+                  const action = row.querySelector('.unknown-action');
+                  const type = row.querySelector('.unknown-type');
+                  action.value = applyAll;
+                  type.disabled = applyAll !== 'create';
+                  unknownActions[row.getAttribute('data-uid')] = { action: applyAll, entity_type_code: applyAll === 'create' ? type.value : undefined };
+                });
+              });
+            }
+            root.querySelectorAll('tr[data-uid]').forEach((row) => {
+              const uid = row.getAttribute('data-uid');
+              const action = row.querySelector('.unknown-action');
+              const type = row.querySelector('.unknown-type');
+              action.addEventListener('change', () => {
+                type.disabled = action.value !== 'create';
+                unknownActions[uid] = { action: action.value, entity_type_code: action.value === 'create' ? type.value : undefined };
+              });
+              type.addEventListener('change', () => {
+                unknownActions[uid] = { action: action.value, entity_type_code: type.value };
+              });
+              unknownActions[uid] = { action: action.value, entity_type_code: undefined };
+            });
+
+            root.querySelector('#import-cancel').addEventListener('click', close);
+            root.querySelector('#import-confirm').addEventListener('click', async () => {
+              const finalRes = await fetchJSON('/api/import', {
+                method: 'POST',
+                body: JSON.stringify({ type: 'incidents', file_id: fileId, csv: text, unknown_actions: unknownActions })
+              });
+              if (finalRes.errors && finalRes.errors.length) {
+                const errCsv = toCsv(finalRes.errors.map((e) => ({ row: e.row, error: e.error })));
+                downloadBlob(errCsv, 'incidents_import_errors.csv', 'text/csv');
+              }
+              close();
+              const skipped = finalRes.skipped ? `, skipped: ${finalRes.skipped}` : '';
+              showToast(`Imported: ${finalRes.ok}, errors: ${finalRes.errors.length}${skipped}`);
+              renderIncidentsFile(fileId);
+            });
+          }
+        });
+      });
+
+      renderRows();
+    } catch (e) {
+      app.innerHTML = `<div class="notice">${esc(e.message || 'Failed to load')}</div>`;
+    }
+  }
+
+  async function renderSettings() {
+    setActiveTab('/settings');
+    app.innerHTML = '<div>Loading...</div>';
+    try {
+      const dicts = await fetchJSON('/api/dictionaries');
+      app.innerHTML = `
+        <div class="section">
+          <h1 class="section-title">Settings / Dictionaries</h1>
+        </div>
+        <div class="section">
+          <h2>Quick Add</h2>
+          <div class="form-grid">
+            <div>
+              <label>Dictionary</label>
+              <select id="set-list">
+                <option value="entity_types">Entity types</option>
+                <option value="flags">Flags</option>
+                <option value="address_roles">Address roles</option>
+                <option value="incident_types">Incident types</option>
+                <option value="networks">Networks</option>
+                <option value="entity_categories">Entity categories</option>
+              </select>
+            </div>
+            <div><label>Code</label><input class="input" id="set-code" /></div>
+            <div><label>Title</label><input class="input" id="set-title" /></div>
+            <div><label>Description</label><input class="input" id="set-desc" /></div>
+          </div>
+          <div class="btn-row" style="margin-top:12px"><button id="set-add">Add</button></div>
+        </div>
+        ${renderDictSection('Entity Types', dicts.entityTypes, (t) => t.code, (t) => t.title)}
+        ${renderDictSection('Flags', dicts.flags, (t) => t.code, (t) => t.title || '')}
+        ${renderDictSection('Address Roles', dicts.addressRoles, (t) => t.code, (t) => t.title)}
+        ${renderDictSection('Incident Types', dicts.incidentTypes, (t) => t.code, (t) => t.title)}
+        ${renderDictSection('Networks', dicts.networks, (t) => t.code, (t) => t.title)}
+        ${renderDictSection('Entity Categories', dicts.categories, (t) => t.category_code, (t) => t.title)}
+      `;
+
+      document.getElementById('set-add').addEventListener('click', async () => {
+        const list = document.getElementById('set-list').value;
+        const code = normalizeCode(document.getElementById('set-code').value);
+        const title = document.getElementById('set-title').value.trim();
+        const description = document.getElementById('set-desc').value.trim();
+        if (!code || !title) return;
+        await fetchJSON('/api/dictionaries', {
+          method: 'POST',
+          body: JSON.stringify({ list, code, title, description: description || null })
+        });
+        showToast('Added');
+        renderSettings();
+      });
+    } catch (e) {
+      app.innerHTML = `<div class="notice">${esc(e.message || 'Failed to load')}</div>`;
+    }
+  }
+
+  function renderDictSection(title, items, getCode, getTitle) {
+    return `
+      <div class="section">
+        <h2>${esc(title)}</h2>
+        <div class="card-grid">
+          ${items.map((t) => `
+            <div class="card">
+              <h3>${esc(getCode(t))}</h3>
+              <p>${esc(getTitle(t))}</p>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  async function renderAdmin() {
+    setActiveTab('/admin');
+    app.innerHTML = '<div>Loading...</div>';
+    try {
+      const [r, u] = await Promise.all([
+        fetchJSON('/api/admin/roles'),
+        fetchJSON('/api/admin/users')
+      ]);
+      const roles = r.roles || [];
+      const users = u.users || [];
+      const roleOptions = roles.map((role) => ({ id: role.id, label: `${role.title} (${role.code})` }));
+
+      app.innerHTML = `
+        <div class="section">
+          <h1 class="section-title">Admin / Users & Roles</h1>
+        </div>
+        <div class="section">
+          <h2>Roles</h2>
+          <div class="form-grid">
+            <div><label>Code</label><input class="input" id="role-code" /></div>
+            <div><label>Title</label><input class="input" id="role-title" /></div>
+            <div><label>Description</label><input class="input" id="role-desc" /></div>
+          </div>
+          <div class="btn-row" style="margin-top:12px"><button id="role-add">Add role</button></div>
+          <div class="card-grid" style="margin-top:12px">
+            ${roles.map((role) => `
+              <div class="card"><h3>${esc(role.title)}</h3><p>${esc(role.code)}</p></div>
+            `).join('')}
+          </div>
+        </div>
+        <div class="section">
+          <h2>Users</h2>
+          <div class="form-grid">
+            <div><label>Email</label><input class="input" id="user-email" /></div>
+            <div><label>Name</label><input class="input" id="user-name" /></div>
+          </div>
+          <div class="btn-row" style="margin-top:12px"><button id="user-add">Add user</button></div>
+          <div class="table-wrap" style="margin-top:12px">
+            <table class="table">
+              <thead><tr><th>Email</th><th>Name</th><th>Roles</th></tr></thead>
+              <tbody>
+                ${users.map((user) => `
+                  <tr>
+                    <td>${esc(user.email)}</td>
+                    <td>${esc(user.name || '')}</td>
+                    <td>
+                      ${(user.roles || []).map((ur) => `
+                        <span class="badge">
+                          ${esc(ur.role.code)}
+                          <button class="ghost" style="margin-left:8px" data-remove="${user.id}:${ur.role.id}">x</button>
+                        </span>
+                      `).join('')}
+                    </td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="section">
+          <h2>Assign Role</h2>
+          <div class="form-grid">
+            <div>
+              <label>User</label>
+              <select id="assign-user">
+                <option value="0">Select user</option>
+                ${users.map((user) => `<option value="${user.id}">${esc(user.email)}</option>`).join('')}
+              </select>
+            </div>
+            <div>
+              <label>Role</label>
+              <select id="assign-role">
+                <option value="0">Select role</option>
+                ${roleOptions.map((r) => `<option value="${r.id}">${esc(r.label)}</option>`).join('')}
+              </select>
+            </div>
+          </div>
+          <div class="btn-row" style="margin-top:12px"><button id="assign-btn">Assign</button></div>
+        </div>
+      `;
+
+      document.getElementById('role-add').addEventListener('click', async () => {
+        const code = document.getElementById('role-code').value.trim();
+        const title = document.getElementById('role-title').value.trim();
+        const description = document.getElementById('role-desc').value.trim();
+        if (!code || !title) return;
+        await fetchJSON('/api/admin/roles', { method: 'POST', body: JSON.stringify({ code, title, description }) });
+        showToast('Role added');
+        renderAdmin();
+      });
+
+      document.getElementById('user-add').addEventListener('click', async () => {
+        const email = document.getElementById('user-email').value.trim();
+        const name = document.getElementById('user-name').value.trim();
+        if (!email) return;
+        await fetchJSON('/api/admin/users', { method: 'POST', body: JSON.stringify({ email, name }) });
+        showToast('User added');
+        renderAdmin();
+      });
+
+      document.getElementById('assign-btn').addEventListener('click', async () => {
+        const userId = Number(document.getElementById('assign-user').value);
+        const roleId = Number(document.getElementById('assign-role').value);
+        if (!userId || !roleId) return;
+        await fetchJSON('/api/admin/user-roles', { method: 'POST', body: JSON.stringify({ user_id: userId, role_id: roleId }) });
+        showToast('Role assigned');
+        renderAdmin();
+      });
+
+      document.querySelectorAll('[data-remove]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const [userId, roleId] = btn.getAttribute('data-remove').split(':').map(Number);
+          await fetchJSON('/api/admin/user-roles', { method: 'DELETE', body: JSON.stringify({ user_id: userId, role_id: roleId }) });
+          showToast('Role removed');
+          renderAdmin();
+        });
+      });
+    } catch (e) {
+      app.innerHTML = `<div class="notice">${esc(e.message || 'Failed to load')}</div>`;
+    }
+  }
+
+  function renderRoute() {
+    const hash = location.hash || '#/entities';
+    if (hash.startsWith('#/entities/')) {
+      const id = hash.split('/')[2];
+      return renderEntitiesFile(id);
+    }
+    if (hash === '#/entities') return renderEntities();
+    if (hash.startsWith('#/affiliations/')) {
+      const id = hash.split('/')[2];
+      return renderAffiliationsFolder(id);
+    }
+    if (hash === '#/affiliations') return renderAffiliations();
+    if (hash.startsWith('#/incidents/')) {
+      const id = hash.split('/')[2];
+      return renderIncidentsFile(id);
+    }
+    if (hash === '#/incidents') return renderIncidents();
+    if (hash === '#/settings') return renderSettings();
+    if (hash === '#/admin') return renderAdmin();
+    return renderEntities();
+  }
+
+  if (location.protocol === 'file:') {
+    app.innerHTML = '<div class="notice">Open this file via the Next.js dev server (http://localhost:3000/static-site.html) so API calls work.</div>';
+  }
+
+  window.addEventListener('hashchange', renderRoute);
+  renderRoute();
+})();
+  </script>
+</body>
+</html>
